@@ -28,54 +28,60 @@ class FormularioTransferencias extends StatelessWidget {
       appBar: AppBar(title: const Text('Criando Transferência')),
       body: Column(
         children: [
-          Padding(
-            padding: const EdgeInsets.fromLTRB(16.0, 8.0, 16.0, 8.0),
-            child: TextField(
-              controller: _controladorCampoNumeroConta,
-              style: const TextStyle(
-                fontSize: 24.0,
-              ),
-              decoration: const InputDecoration(
-                labelText: 'Número da Conta',
-                hintText: '00000',
-              ),
-              keyboardType: TextInputType.number,
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.fromLTRB(16.0, 8.0, 16.0, 8.0),
-            child: TextField(
-              controller: _controladorCampoValorTransferencia,
-              style: const TextStyle(
-                fontSize: 24.0,
-              ),
-              decoration: const InputDecoration(
-                icon: Icon(Icons.attach_money),
-                labelText: 'Valor',
-                hintText: '0.00',
-              ),
-              keyboardType: TextInputType.number,
-            ),
-          ),
+          Editor(_controladorCampoNumeroConta, 'Número da Conta',
+              hintText: '00000', keyboardType: TextInputType.number),
+          Editor(_controladorCampoValorTransferencia, 'Valor',
+              hintText: '0.00', keyboardType: TextInputType.number, iconData: Icons.attach_money),
           ElevatedButton(
-            onPressed: () {
-              final int? nrConta = int.tryParse(_controladorCampoNumeroConta.text);
-              final double? vlTransferencia = double.tryParse(_controladorCampoValorTransferencia.text);
-
-              if (nrConta != null && vlTransferencia != null) {
-                Transferencia transferencia = Transferencia(nrConta, vlTransferencia);
-
-                // Exibir a informação no rodapé da página
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(
-                    content: Text('$transferencia'),
-                  ),
-                );
-              }
-            },
+            onPressed: () => _criaTransferencia(context),
             child: const Text('Confirmar'),
           ),
         ],
+      ),
+    );
+  }
+
+  void _criaTransferencia(BuildContext context) {
+    final int? nrConta = int.tryParse(_controladorCampoNumeroConta.text);
+    final double? vlTransferencia = double.tryParse(_controladorCampoValorTransferencia.text);
+
+    if (nrConta != null && vlTransferencia != null) {
+      Transferencia transferencia = Transferencia(nrConta, vlTransferencia);
+
+      // Exibir a informação no rodapé da página
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('$transferencia'),
+        ),
+      );
+    }
+  }
+}
+
+class Editor extends StatelessWidget {
+  final TextEditingController controller;
+  final String labelText;
+  final String? hintText;
+  final TextInputType? keyboardType;
+  final IconData? iconData;
+
+  const Editor(this.controller, this.labelText, {super.key, this.hintText, this.keyboardType, this.iconData});
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(16.0, 8.0, 16.0, 8.0),
+      child: TextField(
+        controller: controller,
+        style: const TextStyle(
+          fontSize: 24.0,
+        ),
+        decoration: InputDecoration(
+          icon: iconData != null ? Icon(iconData) : null,
+          labelText: labelText,
+          hintText: hintText,
+        ),
+        keyboardType: keyboardType,
       ),
     );
   }
