@@ -17,10 +17,8 @@ class ByteBankApp extends StatelessWidget {
 }
 
 class FormularioTransferencias extends StatelessWidget {
-  final TextEditingController _controladorCampoNumeroConta =
-      TextEditingController();
-  final TextEditingController _controladorCampoValorTransferencia =
-      TextEditingController();
+  final TextEditingController _controladorCampoNumeroConta = TextEditingController();
+  final TextEditingController _controladorCampoValorTransferencia = TextEditingController();
 
   FormularioTransferencias({Key? key}) : super(key: key);
 
@@ -61,15 +59,18 @@ class FormularioTransferencias extends StatelessWidget {
           ),
           ElevatedButton(
             onPressed: () {
-              final int? nrConta =
-                  int.tryParse(_controladorCampoNumeroConta.text);
-              final double? vlTransferencia =
-                  double.tryParse(_controladorCampoValorTransferencia.text);
+              final int? nrConta = int.tryParse(_controladorCampoNumeroConta.text);
+              final double? vlTransferencia = double.tryParse(_controladorCampoValorTransferencia.text);
 
               if (nrConta != null && vlTransferencia != null) {
-                Transferencia transferencia =
-                    Transferencia(nrConta, vlTransferencia);
-                debugPrint('$transferencia');
+                Transferencia transferencia = Transferencia(nrConta, vlTransferencia);
+
+                // Exibir a informação no rodapé da página
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text('$transferencia'),
+                  ),
+                );
               }
             },
             child: const Text('Confirmar'),
@@ -99,7 +100,7 @@ class ListaTransferencias extends StatelessWidget {
         ],
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () => print('teste'),
+        onPressed: () => debugPrint('teste'),
         child: const Icon(Icons.add),
       ),
     );
