@@ -16,6 +16,45 @@ class ByteBankApp extends StatelessWidget {
   }
 }
 
+class ListaTransferencias extends StatelessWidget {
+  final List<Transferencia> _transferencias = List.empty(growable: true);
+
+  ListaTransferencias({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Transferências'),
+      ),
+      body: ListView.builder(
+        itemCount: _transferencias.length,
+        itemBuilder: (BuildContext context, int index) {
+          final Transferencia transferencia = _transferencias[index];
+          return ItemTranferencia(transferencia);
+        },
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: const Icon(Icons.add),
+        onPressed: () {
+          final Future<Transferencia?> future = Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) {
+              return FormularioTransferencias();
+            }),
+          );
+
+          future.then((transferenciaRecebida) {
+            if (transferenciaRecebida != null) {
+              _transferencias.add(transferenciaRecebida);
+            }
+          });
+        },
+      ),
+    );
+  }
+}
+
 class FormularioTransferencias extends StatelessWidget {
   final TextEditingController _controladorCampoNumeroConta = TextEditingController();
   final TextEditingController _controladorCampoValorTransferencia = TextEditingController();
@@ -60,70 +99,6 @@ class FormularioTransferencias extends StatelessWidget {
   }
 }
 
-class Editor extends StatelessWidget {
-  final TextEditingController controller;
-  final String labelText;
-  final String? hintText;
-  final TextInputType? keyboardType;
-  final IconData? iconData;
-
-  const Editor(this.controller, this.labelText, {super.key, this.hintText, this.keyboardType, this.iconData});
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(16.0, 8.0, 16.0, 8.0),
-      child: TextField(
-        controller: controller,
-        style: const TextStyle(
-          fontSize: 24.0,
-        ),
-        decoration: InputDecoration(
-          icon: iconData != null ? Icon(iconData) : null,
-          labelText: labelText,
-          hintText: hintText,
-        ),
-        keyboardType: keyboardType,
-      ),
-    );
-  }
-}
-
-class ListaTransferencias extends StatelessWidget {
-  const ListaTransferencias({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Transferências'),
-      ),
-      body: Column(
-        children: [
-          ItemTranferencia(Transferencia(1000, 100.0)),
-          ItemTranferencia(Transferencia(2000, 900.0)),
-          ItemTranferencia(Transferencia(3000, 340.0)),
-          ItemTranferencia(Transferencia(2000, 200.0)),
-          ItemTranferencia(Transferencia(3000, 300.0)),
-        ],
-      ),
-      floatingActionButton: FloatingActionButton(
-        child: const Icon(Icons.add),
-        onPressed: () {
-          final Future<Transferencia?> future = Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) {
-              return FormularioTransferencias();
-            }),
-          );
-
-          future.then((transferenciaRecebida) => debugPrint('$transferenciaRecebida'));
-        },
-      ),
-    );
-  }
-}
-
 class ItemTranferencia extends StatelessWidget {
   // private
   final Transferencia _transferencia;
@@ -151,5 +126,34 @@ class Transferencia {
   @override
   String toString() {
     return 'Transferencia {nrConta: $nrConta, vlTransferencia: $vlTransferencia}';
+  }
+}
+
+class Editor extends StatelessWidget {
+  final TextEditingController controller;
+  final String labelText;
+  final String? hintText;
+  final TextInputType? keyboardType;
+  final IconData? iconData;
+
+  const Editor(this.controller, this.labelText, {super.key, this.hintText, this.keyboardType, this.iconData});
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(16.0, 8.0, 16.0, 8.0),
+      child: TextField(
+        controller: controller,
+        style: const TextStyle(
+          fontSize: 24.0,
+        ),
+        decoration: InputDecoration(
+          icon: iconData != null ? Icon(iconData) : null,
+          labelText: labelText,
+          hintText: hintText,
+        ),
+        keyboardType: keyboardType,
+      ),
+    );
   }
 }
