@@ -9,7 +9,7 @@ void main() => runApp(
           ),
           body: const ListaTransferencias(),
           floatingActionButton: FloatingActionButton(
-            onPressed: () => print('teste'),
+            onPressed: () => debugPrint('teste'),
             child: const Icon(Icons.add),
           ),
         ),

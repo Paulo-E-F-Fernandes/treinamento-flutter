@@ -26,7 +26,7 @@ void main() => runApp(
             ],
           ),
           floatingActionButton: FloatingActionButton(
-            onPressed: () => print('teste'),
+            onPressed: () => debugPrint('teste'),
             child: const Icon(Icons.add),
           ),
         ),
