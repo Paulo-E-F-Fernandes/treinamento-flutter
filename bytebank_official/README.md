@@ -1,6 +1,7 @@
 # bytebank_official
 
 A new Flutter project.
+ - Mensagem de commit padrão: "Aula 2: Persistência de dados - Vídeo x"
 
 ## Getting Started
 
