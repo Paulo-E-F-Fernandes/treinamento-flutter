@@ -1,4 +1,5 @@
-import 'package:bytebank_official/screens/contacts_list.dart';
+import 'package:bytebank_official/screens/contacts/form.dart';
+import 'package:bytebank_official/screens/contacts/list.dart';
 import 'package:bytebank_official/screens/dashboard.dart';
 import 'package:flutter/material.dart';
 
@@ -12,17 +13,22 @@ class ByteBankApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSwatch().copyWith(
-          primary: Colors.green[900],
-          secondary: Colors.blueAccent[700],
+        theme: ThemeData(
+          colorScheme: ColorScheme.fromSwatch().copyWith(
+            primary: Colors.green[900],
+            secondary: Colors.blueAccent[700],
+          ),
+          elevatedButtonTheme: ElevatedButtonThemeData(
+            style: ElevatedButton.styleFrom(
+              primary: Colors.blueAccent[700],
+            ),
+          ),
+          // buttonTheme: ButtonThemeData(
+          //   buttonColor: Colors.blueAccent[700],
+          //   textTheme: ButtonTextTheme.primary,
+          // ),
         ),
-        buttonTheme: ButtonThemeData(
-          buttonColor: Colors.blueAccent[700],
-          textTheme: ButtonTextTheme.primary,
-        ),
-      ),
-      home: const Dashboard(),
-    );
+        home: ContactsForm() // const Dashboard(),
+        );
   }
 }

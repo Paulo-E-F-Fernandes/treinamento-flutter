@@ -1,4 +1,4 @@
-import 'package:bytebank_official/screens/contacts_list.dart';
+import 'package:bytebank_official/screens/contacts/list.dart';
 import 'package:flutter/material.dart';
 
 const String _lblDashboard = "Dashboard";

@@ -3,6 +3,9 @@
 A new Flutter project.
  - Mensagem de commit padrão: "Aula 2: Persistência de dados - Vídeo x"
 
+## Padrão de nomenclatura:
+ - Para verificar o padrão de nomenclatura utilizado no dart, podemos acessar a página https://dart.dev/guides/language/effective-dart/style.
+
 ## Getting Started
 
 This project is a starting point for a Flutter application.
