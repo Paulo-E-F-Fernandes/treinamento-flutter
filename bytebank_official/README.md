@@ -3,6 +3,14 @@
 A new Flutter project.
  - Mensagem de commit padrão: "Aula 2: Persistência de dados - Vídeo x"
 
+## Documentação - Livro de recitas para tarefas comuns
+ - https://docs.flutter.dev/cookbook
+
+## Dependências:
+ - A dependência do "sqflite:" foi adicionada no arquivo "pubspec.yaml" sem definir um versão, por exemplo, "cupertino_icons: ^1.0.2", então no cado do "sqflite" estamos sinalizando o usu de qualquer versão.
+ - Para mais informações sobre dependências, podemos acessar o link abaixo:
+   - https://dart.dev/tools/pub/dependencies
+
 ## Padrão de nomenclatura:
  - Para verificar o padrão de nomenclatura utilizado no dart, podemos acessar a página https://dart.dev/guides/language/effective-dart/style.
 

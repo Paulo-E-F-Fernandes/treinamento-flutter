@@ -1,5 +1,4 @@
 import 'package:bytebank_official/models/contact.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 const String _lblNewContact = "New contact";
