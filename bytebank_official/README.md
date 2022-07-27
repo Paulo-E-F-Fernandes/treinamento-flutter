@@ -14,6 +14,9 @@ A new Flutter project.
 ## Padrão de nomenclatura:
  - Para verificar o padrão de nomenclatura utilizado no dart, podemos acessar a página https://dart.dev/guides/language/effective-dart/style.
 
+## Final vs Const
+ - https://dart.dev/guides/language/language-tour#final-and-const
+
 ---
 ## Para saber mais - Lidando com possíveis problemas no *sqflite*
  - Nesta configuração inicial do *sqflite*, caso tenha algum problema durante a execução do *onCreate*, como por exemplo, erro de *syntax* na criação da tabela, o *sqflite* mantém a execução e considera o banco como a primeira versão criada.

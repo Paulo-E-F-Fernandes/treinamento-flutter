@@ -1,4 +1,4 @@
-import 'package:bytebank_official/models/contact.dart';
+import 'package:bytebank_official/database/dao/contact_dao.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
@@ -15,7 +15,7 @@ Future<Database> getDatabase() async {
     // When the database is first created, create our table.
     onCreate: (db, version) {
       // Run the CREATE TABLE statement on the database.
-      db.execute("CREATE TABLE contacts(id INTEGER PRIMARY KEY, full_name TEXT, account_number INTEGER)");
+      db.execute(ContactDAO.createTableSql);
     },
     // Set the version.
     // This executes the onCreate function and provides a path to perform database upgrades and downgrades.
@@ -48,55 +48,6 @@ Future<Database> getDatabase() async {
       // Tomar muito cuidado ao utilizar a instrução abaixo
       // onDowngrade: onDatabaseDowngradeDelete,
     );
-  });
-  */
-}
-
-Future<int> save(Contact contact) async {
-  final Database db = await getDatabase();
-
-  final Map<String, dynamic> contactMap = {}; // {} ==> Map()
-  contactMap['full_name'] = contact.fullName;
-  contactMap['account_number'] = contact.accountNumber;
-  // Retorna o "id" do registro gerado.
-  return db.insert("contacts", contactMap);
-
-  /*
-  return createDatabase().then((db) {
-    final Map<String, dynamic> contactMap = {}; // {} ==> Map()
-    contactMap['full_name'] = contact.fullName;
-    contactMap['account_number'] = contact.accountNumber;
-    // Retorna o "id" do registro gerado.
-    return db.insert("contacts", contactMap);
-  });
-  */
-}
-
-Future<List<Contact>> findAll() async {
-  final Database db = await getDatabase();
-  final List<Map<String, dynamic>> result = await db.query('contacts');
-
-  final List<Contact> contacts = List.empty(growable: true);
-
-  for (Map<String, dynamic> row in result) {
-    final Contact contact = Contact(row['id'], row['full_name'], row['account_number']);
-    contacts.add(contact);
-  }
-
-  return contacts;
-
-/*
-  return getDatabase().then((db) {
-    return db.query('contacts').then((contactsMapList) {
-      final List<Contact> contacts = List.empty(growable: true);
-
-      for (Map<String, dynamic> contactsMap in contactsMapList) {
-        final Contact contact = Contact(contactsMap['id'], contactsMap['full_name'], contactsMap['account_number']);
-        contacts.add(contact);
-      }
-
-      return contacts;
-    });
   });
   */
 }
