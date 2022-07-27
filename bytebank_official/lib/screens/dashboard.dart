@@ -1,4 +1,4 @@
-import 'package:bytebank_official/screens/contacts/list.dart';
+import 'package:bytebank_official/screens/contacts/contacts_list.dart';
 import 'package:flutter/material.dart';
 
 const String _lblDashboard = "Dashboard";
@@ -40,7 +40,7 @@ class Dashboard extends StatelessWidget {
                 onTap: () {
                   Navigator.of(context).push(
                     MaterialPageRoute(
-                      builder: (context) => ContactsList(),
+                      builder: (context) => const ContactsList(),
                     ),
                   );
                 },

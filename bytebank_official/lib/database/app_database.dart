@@ -21,6 +21,10 @@ Future<Database> createDatabase() {
       // Set the version.
       // This executes the onCreate function and provides a path to perform database upgrades and downgrades.
       version: 1,
+      // o "onDowngrade" é executado quando voltamos para uma versão anterior (version:)
+      // o "onDatabaseDowngradeDelete" vai limpar os dados do database quando a versão voltar para a anterior
+      // Tomar muito cuidado ao utilizar a instrução abaixo
+      // onDowngrade: onDatabaseDowngradeDelete,
     );
   });
 }
