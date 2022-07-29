@@ -22,16 +22,51 @@ class Dashboard extends StatelessWidget {
             padding: const EdgeInsets.all(8.0),
             child: Image.asset("images/bytebank_logo.png"),
           ),
-          SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Row(
-              children: const [
-                _FeatureItem(ContactsList.lblContacts, ContactsList.iconContacts),
-                _FeatureItem(TransferList.lblTransfer, TransferList.iconTransfer),
-                _FeatureItem("Transaction Feed", Icons.description),
+          SizedBox(
+            height: 120,
+            child: ListView(
+              scrollDirection: Axis.horizontal,
+              children: [
+                _FeatureItem(
+                  ContactsList.lblContacts,
+                  ContactsList.iconContacts,
+                  onClick: () => _showContactsList(context),
+                ),
+                _FeatureItem(
+                  TransferList.lblTransfer,
+                  TransferList.iconTransfer,
+                  onClick: () => _showTransferList(context),
+                ),
+                _FeatureItem(
+                  "Transaction Feed",
+                  Icons.description,
+                  onClick: () => debugPrint("transaction feed was clicked"),
+                ),
               ],
             ),
           ),
+          // SingleChildScrollView(
+          //   scrollDirection: Axis.horizontal,
+          //   child: Row(
+          //     children: [
+          //       _FeatureItem(
+          //         ContactsList.lblContacts,
+          //         ContactsList.iconContacts,
+          //         onClick: () => _showContactsList(context),
+          //       ),
+          //       _FeatureItem(
+          //         TransferList.lblTransfer,
+          //         TransferList.iconTransfer,
+          //         onClick: () => _showTransferList(context),
+          //       ),
+          //       _FeatureItem(
+          //         "Transaction Feed",
+          //         Icons.description,
+          //         onClick: () => debugPrint("transaction feed was clicked"),
+          //       ),
+          //     ],
+          //   ),
+          // ),
         ],
       ),
     );
@@ -41,8 +76,10 @@ class Dashboard extends StatelessWidget {
 class _FeatureItem extends StatelessWidget {
   final String _name;
   final IconData _icon;
+  // O "Function" determina que é um callback do dart
+  final Function onClick;
 
-  const _FeatureItem(this._name, this._icon, {Key? key}) : super(key: key);
+  const _FeatureItem(this._name, this._icon, {required this.onClick, Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -62,15 +99,9 @@ class _FeatureItem extends StatelessWidget {
       child: Material(
         color: Theme.of(context).colorScheme.primary,
         child: InkWell(
-          onTap: () {
-            Navigator.of(context).push(
-              MaterialPageRoute(
-                builder: (context) => const ContactsList(),
-              ),
-            );
-          },
+          onTap: () => onClick(),
           child: Container(
-            height: 100,
+            // height: 100,
             width: 150,
             padding: const EdgeInsets.all(8.0),
             // Quando usamos o "Theme.of(context)", caso o "context" utilizado seja o que está sendo recebido por parâmetro
@@ -102,4 +133,20 @@ class _FeatureItem extends StatelessWidget {
       ),
     );
   }
+}
+
+void _showContactsList(BuildContext context) {
+  Navigator.of(context).push(
+    MaterialPageRoute(
+      builder: (context) => const ContactsList(),
+    ),
+  );
+}
+
+void _showTransferList(BuildContext context) {
+  Navigator.of(context).push(
+    MaterialPageRoute(
+      builder: (context) => const TransferList(),
+    ),
+  );
 }
