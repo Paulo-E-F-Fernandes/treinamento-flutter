@@ -2,6 +2,7 @@
 
 A new Flutter project.
  - Mensagem de commit padrão: "Aula 2: Persistência de dados - Vídeo x"
+ - Mensagem de commit padrão Web API: "Aula: Flutter com Web API: Integrando o app mobile - Vídeo x"
 
 ## Documentação - Livro de recitas para tarefas comuns
  - https://docs.flutter.dev/cookbook

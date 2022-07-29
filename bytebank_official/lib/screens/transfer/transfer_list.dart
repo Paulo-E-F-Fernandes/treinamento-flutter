@@ -3,23 +3,23 @@ import 'package:bytebank_official/models/contact.dart';
 import 'package:bytebank_official/screens/contacts/contacts_form.dart';
 import 'package:flutter/material.dart';
 
-class ContactsList extends StatefulWidget {
-  static const String lblContacts = "Contacts";
-  static const IconData iconContacts = Icons.people;
+class TransferList extends StatefulWidget {
+  static const String lblTransfer = "Transfer";
+  static const IconData iconTransfer = Icons.monetization_on;
 
-  const ContactsList({Key? key}) : super(key: key);
+  const TransferList({Key? key}) : super(key: key);
 
   @override
-  State<ContactsList> createState() => _ContactsListState();
+  State<TransferList> createState() => _TransferListState();
 }
 
-class _ContactsListState extends State<ContactsList> {
+class _TransferListState extends State<TransferList> {
   final ContactDAO _dao = ContactDAO();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text(ContactsList.lblContacts)),
+      appBar: AppBar(title: const Text(TransferList.lblTransfer)),
       body: FutureBuilder<List<Contact>>(
         initialData: List.empty(growable: true),
         // Precisamos indicar qual é a execução que o "FutureBuilder" vai realizar
