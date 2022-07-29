@@ -1,4 +1,5 @@
 import 'package:bytebank_official/screens/contacts/contacts_list.dart';
+import 'package:bytebank_official/screens/transactions_list.dart';
 import 'package:bytebank_official/screens/transfer/transfer_list.dart';
 import 'package:flutter/material.dart';
 
@@ -40,7 +41,7 @@ class Dashboard extends StatelessWidget {
                 _FeatureItem(
                   "Transaction Feed",
                   Icons.description,
-                  onClick: () => debugPrint("transaction feed was clicked"),
+                  onClick: () => _showTransactionsList(context),
                 ),
               ],
             ),
@@ -147,6 +148,14 @@ void _showTransferList(BuildContext context) {
   Navigator.of(context).push(
     MaterialPageRoute(
       builder: (context) => const TransferList(),
+    ),
+  );
+}
+
+void _showTransactionsList(BuildContext context) {
+  Navigator.of(context).push(
+    MaterialPageRoute(
+      builder: (context) => TransactionsList(),
     ),
   );
 }
